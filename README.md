@@ -1,0 +1,1 @@
+Example `npx ts-node shopify`
