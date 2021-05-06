@@ -1,0 +1,149 @@
+diff --git a/node_modules/xero-node/dist/gen/api/accountingApi.js b/node_modules/xero-node/dist/gen/api/accountingApi.js
+index 016c7c0..67c158b 100644
+--- a/node_modules/xero-node/dist/gen/api/accountingApi.js
++++ b/node_modules/xero-node/dist/gen/api/accountingApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/accounting/models");
+ const models_2 = require("../model/accounting/models");
+ let defaultBasePath = 'https://api.xero.com/api.xro/2.0';
+diff --git a/node_modules/xero-node/dist/gen/api/assetApi.js b/node_modules/xero-node/dist/gen/api/assetApi.js
+index 0254b5b..9727800 100644
+--- a/node_modules/xero-node/dist/gen/api/assetApi.js
++++ b/node_modules/xero-node/dist/gen/api/assetApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/assets/models");
+ const models_2 = require("../model/assets/models");
+ let defaultBasePath = 'https://api.xero.com/assets.xro/1.0';
+diff --git a/node_modules/xero-node/dist/gen/api/bankfeedsApi.js b/node_modules/xero-node/dist/gen/api/bankfeedsApi.js
+index 99d6f02..7495efb 100644
+--- a/node_modules/xero-node/dist/gen/api/bankfeedsApi.js
++++ b/node_modules/xero-node/dist/gen/api/bankfeedsApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/bankfeeds/models");
+ const models_2 = require("../model/bankfeeds/models");
+ let defaultBasePath = 'https://api.xero.com/bankfeeds.xro/1.0';
+diff --git a/node_modules/xero-node/dist/gen/api/filesApi.js b/node_modules/xero-node/dist/gen/api/filesApi.js
+index 2437ef8..2e50786 100644
+--- a/node_modules/xero-node/dist/gen/api/filesApi.js
++++ b/node_modules/xero-node/dist/gen/api/filesApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/files/models");
+ const models_2 = require("../model/files/models");
+ let defaultBasePath = 'https://api.xero.com/files.xro/1.0';
+diff --git a/node_modules/xero-node/dist/gen/api/payrollAUApi.js b/node_modules/xero-node/dist/gen/api/payrollAUApi.js
+index 3641446..c5caa35 100644
+--- a/node_modules/xero-node/dist/gen/api/payrollAUApi.js
++++ b/node_modules/xero-node/dist/gen/api/payrollAUApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/payroll-au/models");
+ const models_2 = require("../model/payroll-au/models");
+ let defaultBasePath = 'https://api.xero.com/payroll.xro/1.0';
+diff --git a/node_modules/xero-node/dist/gen/api/payrollNZApi.js b/node_modules/xero-node/dist/gen/api/payrollNZApi.js
+index f03ce75..7d6545a 100644
+--- a/node_modules/xero-node/dist/gen/api/payrollNZApi.js
++++ b/node_modules/xero-node/dist/gen/api/payrollNZApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/payroll-nz/models");
+ const models_2 = require("../model/payroll-nz/models");
+ let defaultBasePath = 'https://api.xero.com/payroll.xro/2.0';
+diff --git a/node_modules/xero-node/dist/gen/api/payrollUKApi.js b/node_modules/xero-node/dist/gen/api/payrollUKApi.js
+index 6cda331..6228515 100644
+--- a/node_modules/xero-node/dist/gen/api/payrollUKApi.js
++++ b/node_modules/xero-node/dist/gen/api/payrollUKApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/payroll-uk/models");
+ const models_2 = require("../model/payroll-uk/models");
+ let defaultBasePath = 'https://api.xero.com/payroll.xro/2.0';
+diff --git a/node_modules/xero-node/dist/gen/api/projectApi.js b/node_modules/xero-node/dist/gen/api/projectApi.js
+index 51308a2..acc4fe9 100644
+--- a/node_modules/xero-node/dist/gen/api/projectApi.js
++++ b/node_modules/xero-node/dist/gen/api/projectApi.js
+@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
+     });
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+-const localVarRequest = require("request");
++const localVarRequest = require("../../request").request;
+ const models_1 = require("../model/projects/models");
+ const models_2 = require("../model/projects/models");
+ let defaultBasePath = 'https://api.xero.com/projects.xro/2.0';
+diff --git a/node_modules/xero-node/dist/index.d.ts b/node_modules/xero-node/dist/index.d.ts
+index dfb2c97..5b58ad1 100644
+--- a/node_modules/xero-node/dist/index.d.ts
++++ b/node_modules/xero-node/dist/index.d.ts
+@@ -1,3 +1,4 @@
+ export * from './gen/api/apis';
+ export * from './gen/model/accounting/models';
+ export * from './XeroClient';
++export * from './request';
+diff --git a/node_modules/xero-node/dist/index.js b/node_modules/xero-node/dist/index.js
+index 2b0128c..6ce02f6 100644
+--- a/node_modules/xero-node/dist/index.js
++++ b/node_modules/xero-node/dist/index.js
+@@ -6,4 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
+ __export(require("./gen/api/apis"));
+ __export(require("./gen/model/accounting/models"));
+ __export(require("./XeroClient"));
++__export(require("./request"));
+ //# sourceMappingURL=index.js.map
+diff --git a/node_modules/xero-node/dist/request.d.ts b/node_modules/xero-node/dist/request.d.ts
+new file mode 100644
+index 0000000..6ef8340
+--- /dev/null
++++ b/node_modules/xero-node/dist/request.d.ts
+@@ -0,0 +1,2 @@
++export const request: Function
++export const setCustomRequest: Function
+diff --git a/node_modules/xero-node/dist/request.js b/node_modules/xero-node/dist/request.js
+new file mode 100644
+index 0000000..93506af
+--- /dev/null
++++ b/node_modules/xero-node/dist/request.js
+@@ -0,0 +1,12 @@
++const request = require('request')
++
++let customRequest = null
++
++exports.request = function(opts, callback) {
++    if (customRequest) {
++        return customRequest(request)(opts, callback)
++    }
++    return request(opts, callback)
++}
++
++exports.setCustomRequest = req => {customRequest = req}

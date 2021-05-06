@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "dependencies": {
     "@shopify/shopify-api": "^1.2.1",
     "dotenv": "^9.0.0",
+    "node-quickbooks": "^2.0.38",
     "ts-dotenv": "^0.8.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "xero-node": "^4.11.3"
+  },
+  "devDependencies": {
+    "patch-package": "^6.4.7"
   }
 }
