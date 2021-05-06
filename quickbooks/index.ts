@@ -3,9 +3,6 @@ require("dotenv").config();
 const hijack = require("../utils/hijack");
 hijack();
 
-const apideckUrl = "https://unify.apideck.com";
-const proxyUrl = `${apideckUrl}/vault/proxy`;
-const realmId = "<realmId>"; // your QuickBooks company id
 const consumerId = "test-consumer";
 
 const request = QuickBooks.prototype.request;
@@ -15,8 +12,8 @@ const quickbooksClient = new QuickBooks(
   "consumerSecret", // not used
   "oauthToken", // not used
   false,
-  realmId,
-  false, // use the sandbox?
+  "{realm_id}", // QuickBooks company id connected to the consumer ID - will be dynamically injected by the proxy
+  true, // use the sandbox? Toggles between https://quickbooks.api.intuit.com || https://sandbox-quickbooks.api.intuit.com
   false, // enable debugging?
   null,
   "2.0",
@@ -31,7 +28,7 @@ QuickBooks.prototype.request = (context, verb, options, entity, callback) => {
     {
       ...(options ?? {}),
       forceUrl: true,
-      url: proxyUrl,
+      url: process.env.UNIFY_PROXY_ENDPOINT,
       headers: {
         ...(options?.headers ?? {}),
         "Content-Type": options?.headers?.["Content-Type"] ?? "application/json",
