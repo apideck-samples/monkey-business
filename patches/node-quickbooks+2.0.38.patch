@@ -1,0 +1,201 @@
+diff --git a/node_modules/node-quickbooks/index.js b/node_modules/node-quickbooks/index.js
+index 2d0f2e0..a52bc7c 100644
+--- a/node_modules/node-quickbooks/index.js
++++ b/node_modules/node-quickbooks/index.js
+@@ -191,7 +191,7 @@ QuickBooks.prototype.revokeAccess = function(useRefresh, callback) {
+  * @param {function} callback - Callback function to call with error/response/data results.
+  */
+ QuickBooks.prototype.getUserInfo = function(callback) {
+-  module.request(this, 'get', {url: QuickBooks.USER_INFO_URL}, null, callback);
++  QuickBooks.prototype.request(this, 'get', {url: QuickBooks.USER_INFO_URL}, null, callback);
+ };
+ 
+ /**
+@@ -207,7 +207,7 @@ QuickBooks.prototype.getUserInfo = function(callback) {
+  * @param  {function} callback - Callback function which is called with any error and list of BatchItemResponses
+  */
+ QuickBooks.prototype.batch = function(items, callback) {
+-  module.request(this, 'post', {url: '/batch'}, {BatchItemRequest: items}, callback)
++  QuickBooks.prototype.request(this, 'post', {url: '/batch'}, {BatchItemRequest: items}, callback)
+ }
+ 
+ /**
+@@ -222,7 +222,7 @@ QuickBooks.prototype.changeDataCapture = function(entities, since, callback) {
+   url += typeof entities === 'string' ? entities : entities.join(',')
+   url += '&changedSince='
+   url += typeof since === 'string' ? since : formatISO(since)
+-  module.request(this, 'get', {url: url}, null, callback)
++  QuickBooks.prototype.request(this, 'get', {url: url}, null, callback)
+ }
+ 
+ /**
+@@ -250,7 +250,7 @@ QuickBooks.prototype.upload = function(filename, contentType, stream, entityType
+       }
+     }
+   }
+-  module.request(this, 'post', opts, null, module.unwrap(function(err, data) {
++  QuickBooks.prototype.request(this, 'post', opts, null, module.unwrap(function(err, data) {
+     if (err || data[0].Fault) {
+       (callback || entityType)(err || data[0], null)
+     } else if (_.isFunction(entityType)) {
+@@ -703,7 +703,7 @@ QuickBooks.prototype.getEstimate = function(id, callback) {
+  */
+ QuickBooks.prototype.getExchangeRate = function(options, callback) {
+   var url = "/exchangerate";
+-  module.request(this, 'get', {url: url, qs: options}, null, callback)
++  QuickBooks.prototype.request(this, 'get', {url: url, qs: options}, null, callback)
+ }
+ 
+ 
+@@ -731,7 +731,7 @@ QuickBooks.prototype.sendEstimatePdf = function(id, sendTo, callback) {
+   if (sendTo && ! _.isFunction(sendTo)) {
+     path += '?sendTo=' + sendTo
+   }
+-  module.request(this, 'post', {url: path}, null, module.unwrap(callback, 'Estimate'))
++  QuickBooks.prototype.request(this, 'post', {url: path}, null, module.unwrap(callback, 'Estimate'))
+ }
+ 
+ /**
+@@ -768,7 +768,7 @@ QuickBooks.prototype.sendInvoicePdf = function(id, sendTo, callback) {
+   if (sendTo && ! _.isFunction(sendTo)) {
+     path += '?sendTo=' + sendTo
+   }
+-  module.request(this, 'post', {url: path}, null, module.unwrap(callback, 'Invoice'))
++  QuickBooks.prototype.request(this, 'post', {url: path}, null, module.unwrap(callback, 'Invoice'))
+ }
+ 
+ /**
+@@ -785,7 +785,7 @@ QuickBooks.prototype.sendPurchaseOrder = function(id, sendTo, callback) {
+   if (sendTo && ! _.isFunction(sendTo)) {
+     path += '?sendTo=' + sendTo
+   }
+-  module.request(this, 'post', {url: path}, null, module.unwrap(callback, 'PurchaseOrder'))
++  QuickBooks.prototype.request(this, 'post', {url: path}, null, module.unwrap(callback, 'PurchaseOrder'))
+ }
+ 
+ /**
+@@ -921,7 +921,7 @@ QuickBooks.prototype.sendSalesReceiptPdf = function(id, sendTo, callback) {
+   if (sendTo && ! _.isFunction(sendTo)) {
+     path += '?sendTo=' + sendTo
+   }
+-  module.request(this, 'post', {url: path}, null, module.unwrap(callback, 'SalesReceipt'))
++  QuickBooks.prototype.request(this, 'post', {url: path}, null, module.unwrap(callback, 'SalesReceipt'))
+ }
+ 
+ /**
+@@ -2273,9 +2273,9 @@ QuickBooks.prototype.reportJournalReport = function(options, callback) {
+   module.report(this, 'JournalReport', options, callback)
+ }
+ 
+-module.request = function(context, verb, options, entity, callback) {
++QuickBooks.prototype.request = function(context, verb, options, entity, callback) {
+   var url = context.endpoint + context.realmId + options.url
+-  if (options.url === QuickBooks.RECONNECT_URL || options.url == QuickBooks.DISCONNECT_URL || options.url === QuickBooks.REVOKE_URL || options.url === QuickBooks.USER_INFO_URL) {
++  if (options.url === QuickBooks.RECONNECT_URL || options.url == QuickBooks.DISCONNECT_URL || options.url === QuickBooks.REVOKE_URL || options.url === QuickBooks.USER_INFO_URL || options.forceUrl) {
+     url = options.url
+   }
+   var opts = {
+@@ -2299,11 +2299,7 @@ module.request = function(context, verb, options, entity, callback) {
+   opts.headers['User-Agent'] = 'node-quickbooks: version ' + version
+   opts.headers['Request-Id'] = uuid.v1()
+   opts.qs.format = 'json';
+-  if (context.oauthversion == '2.0'){
+-      opts.headers['Authorization'] =  'Bearer ' + context.token
+-  } else {
+-        opts.oauth = module.oauth(context);
+-  };
++
+   if (options.url.match(/pdf$/)) {
+     opts.headers['accept'] = 'application/pdf'
+     opts.encoding = null
+@@ -2337,7 +2333,7 @@ module.request = function(context, verb, options, entity, callback) {
+ }
+ 
+ module.xmlRequest = function(context, url, rootTag, callback) {
+-  module.request(context, 'get', {url:url}, null, (err, body) => {
++  QuickBooks.prototype.request(context, 'get', {url:url}, null, (err, body) => {
+     var json =
+         body.constructor === {}.constructor ? body :
+             (body.constructor === "".constructor ?
+@@ -2359,13 +2355,13 @@ QuickBooks.prototype.disconnect = function(callback) {
+ // **********************  CRUD Api **********************
+ module.create = function(context, entityName, entity, callback) {
+   var url = '/' + entityName.toLowerCase()
+-  module.request(context, 'post', {url: url}, entity, module.unwrap(callback, entityName))
++  QuickBooks.prototype.request(context, 'post', {url: url}, entity, module.unwrap(callback, entityName))
+ }
+ 
+ module.read = function(context, entityName, id, callback) {
+   var url = '/' + entityName.toLowerCase()
+   if (id) url = url + '/' + id
+-  module.request(context, 'get', {url: url}, null, module.unwrap(callback, entityName))
++  QuickBooks.prototype.request(context, 'get', {url: url}, null, module.unwrap(callback, entityName))
+ }
+ 
+ module.update = function(context, entityName, entity, callback) {
+@@ -2387,20 +2383,20 @@ module.update = function(context, entityName, entity, callback) {
+     opts.qs = { include: 'void' }
+     delete entity.void
+   }
+-  module.request(context, 'post', opts, entity, module.unwrap(callback, entityName))
++  QuickBooks.prototype.request(context, 'post', opts, entity, module.unwrap(callback, entityName))
+ }
+ 
+ module.delete = function(context, entityName, idOrEntity, callback) {
+   var url = '/' + entityName.toLowerCase() + '?operation=delete'
+   callback = callback || function() {}
+   if (_.isObject(idOrEntity)) {
+-    module.request(context, 'post', {url: url}, idOrEntity, callback)
++    QuickBooks.prototype.request(context, 'post', {url: url}, idOrEntity, callback)
+   } else {
+     module.read(context, entityName, idOrEntity, function(err, entity) {
+       if (err) {
+         callback(err)
+       } else {
+-        module.request(context, 'post', {url: url}, entity, callback)
++        QuickBooks.prototype.request(context, 'post', {url: url}, entity, callback)
+       }
+     })
+   }
+@@ -2410,21 +2406,19 @@ module.void = function (context, entityName, idOrEntity, callback) {
+   var url = '/' + entityName.toLowerCase() + '?operation=void'
+   callback = callback || function () { }
+   if (_.isObject(idOrEntity)) {
+-    module.request(context, 'post', { url: url }, idOrEntity, callback)
++    QuickBooks.prototype.request(context, 'post', { url: url }, idOrEntity, callback)
+   } else {
+     module.read(context, entityName, idOrEntity, function (err, entity) {
+       if (err) {
+         callback(err)
+       } else {
+-        module.request(context, 'post', { url: url }, entity, callback)
++        QuickBooks.prototype.request(context, 'post', { url: url }, entity, callback)
+       }
+     })
+   }
+ }
+ 
+ // **********************  Query Api **********************
+-module.requestPromise = Promise.promisify(module.request)
+-
+ module.query = function(context, entity, criteria) {
+ 
+   // criteria is potentially mutated within this function -
+@@ -2494,7 +2488,7 @@ module.query = function(context, entity, criteria) {
+   url = url.replace('@@', '=')
+ 
+   return new Promise(function(resolve, reject) {
+-    module.requestPromise(context, 'get', {url: url}, null).then(function(data) {
++    Promise.promisify(QuickBooks.prototype.request)(context, 'get', {url: url}, null).then(function(data) {
+       var fields = Object.keys(data.QueryResponse)
+       var key = _.find(fields, function(k) { return k.toLowerCase() === entity.toLowerCase()})
+       if (fetchAll) {
+@@ -2531,7 +2525,7 @@ module.report = function(context, reportType, criteria, callback) {
+   if (criteria && typeof criteria !== 'function') {
+     url += module.reportCriteria(criteria) || ''
+   }
+-  module.request(context, 'get', {url: url}, null, typeof criteria === 'function' ? criteria : callback)
++  QuickBooks.prototype.request(context, 'get', {url: url}, null, typeof criteria === 'function' ? criteria : callback)
+ }
+ 
+ 
