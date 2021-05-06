@@ -1,10 +1,8 @@
-import { XeroClient, setCustomRequest } from "xero-node";
+import { setCustomRequest, XeroClient } from "xero-node";
 require("dotenv").config();
 const hijack = require("../utils/hijack");
 hijack();
 
-const apideckUrl = "https://unify.apideck.com";
-const proxyUrl = `${apideckUrl}/vault/proxy`;
 const consumerId = "test-consumer";
 const tenantId = "<tenantId>"; // your Xero tenant id
 const xeroClient = new XeroClient();
@@ -13,7 +11,7 @@ setCustomRequest((req) => (options, callback) => {
   return req(
     {
       ...(options ?? {}),
-      uri: proxyUrl,
+      uri: process.env.UNIFY_PROXY_ENDPOINT,
       headers: {
         ...(options?.headers ?? {}),
         "Content-Type": options?.headers?.["Content-Type"] ?? "application/json",
