@@ -1,7 +1,7 @@
 const http = require('http')
 const https = require('https')
 
-function logging() {
+function hijack() {
   override(http)
   override(https)
 }
@@ -54,4 +54,4 @@ function override(module) {
   module.request = wrapper
 }
 
-module.exports.default = logging
+module.exports = hijack

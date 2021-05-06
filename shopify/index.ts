@@ -1,5 +1,7 @@
 import Shopify from '@shopify/shopify-api';
 require('dotenv').config()
+const hijack = require("../utils/hijack")
+hijack()
 
 const apideckUrl = 'https://unify.apideck.com'
 // const apideckUrl = 'http://localhost:3050'
