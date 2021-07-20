@@ -7,7 +7,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@shopify/shopify-api": "^1.2.1",
+    "@shopify/shopify-api": "^1.4.1",
     "dotenv": "^9.0.0",
     "node-quickbooks": "^2.0.38",
     "ts-dotenv": "^0.8.3",
