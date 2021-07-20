@@ -828,10 +828,10 @@ node-fetch@^2.6.1:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
-node-quickbooks@^2.0.38:
-  version "2.0.38"
-  resolved "https://registry.yarnpkg.com/node-quickbooks/-/node-quickbooks-2.0.38.tgz#be49d1d0031fdfc5dd19dbdb8f3aeb125c591ca8"
-  integrity sha512-+74hih+WyYU114MH/ENM3KbaI965iFDBbMMYoCERlRP6kLVjUOrQ9kfZREovdxDiuiL5gAc+HVncn38CkW13/A==
+node-quickbooks@^2.0.39:
+  version "2.0.39"
+  resolved "https://registry.yarnpkg.com/node-quickbooks/-/node-quickbooks-2.0.39.tgz#a2534d24063e8a0cea5bb80c66b0727c1c942081"
+  integrity sha512-HFC5okMoK+DYaXvfU7CLkp5JAuLZ/KxGIn900bjbxiDf/XNhV7BhNFP3v73HbVlEKJTwwabNY5SF/pEJw5+nOA==
   dependencies:
     bluebird "3.3.4"
     date-fns "^2.9.0"
@@ -839,7 +839,7 @@ node-quickbooks@^2.0.38:
     querystring "0.2.0"
     request "2.88.0"
     request-debug "0.2.0"
-    underscore "1.6.0"
+    underscore "1.12.1"
     util "0.10.3"
     uuid "^3.1.0"
 
@@ -1225,10 +1225,10 @@ typescript@^4.2.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
   integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
-underscore@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.6.0.tgz#8b38b10cacdef63337b8b24e4ff86d45aea529a8"
-  integrity sha1-izixDKze9jM3uLJOT/htRa6lKag=
+underscore@1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.12.1.tgz#7bb8cc9b3d397e201cf8553336d262544ead829e"
+  integrity sha512-hEQt0+ZLDVUMhebKxL4x1BTtDY7bavVofhZ9KZ4aI26X9SRaE+Y3m83XUL1UP2jn8ynjndwCCpEHdUG+9pP1Tw==
 
 universalify@^0.1.0:
   version "0.1.2"
