@@ -1287,10 +1287,10 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-xero-node@^4.11.3:
-  version "4.11.3"
-  resolved "https://registry.yarnpkg.com/xero-node/-/xero-node-4.11.3.tgz#a158b6dada8530f98644c372185c786f584d25ad"
-  integrity sha512-t2022Rg5TW1vZoAW32uUSEaEO/f1foTc1gcHn0QntabqwGagPp9twHO3Z2ZfKndVhdlh/27vWl74T1AuvjdyaQ==
+xero-node@^4.12.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/xero-node/-/xero-node-4.13.0.tgz#a3f0baedaf88d23a20eb418ea88fb10de4fe20af"
+  integrity sha512-FjK5sKdIpCjof36nPfxSGkIqgPo+ZM3BNTMIrmXIDzJII55b6u1Ag2EKqyiXjJGiYwpDOILALz55JUCD2NLtcA==
   dependencies:
     openid-client "^3.9.2"
     request "^2.88.0"
