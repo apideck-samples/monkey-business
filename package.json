@@ -12,7 +12,7 @@
     "node-quickbooks": "^2.0.38",
     "ts-dotenv": "^0.8.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.4",
+    "typescript": "^4.3.4",
     "xero-node": "^4.11.3"
   },
   "devDependencies": {
